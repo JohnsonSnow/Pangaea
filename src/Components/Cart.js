@@ -13,6 +13,11 @@ const Cart = props => {
         emptyCart
       } = useCart();
 
+      const formattedCurrency = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+      });
+
     return (
         <>
             <div
@@ -47,7 +52,7 @@ const Cart = props => {
                                 <button class="btn btn-primary" onClick={() => updateItemQuantity(item.id, item.quantity + 1)} > + </button>
                             </div>
                             <div class="col-md-4">
-                                {item.price * item.quantity}
+                                {formattedCurrency.format(item.price * item.quantity)}
                             </div>
                             <div class="col-md-4">
                                 <img src={item.image_url} width="30px" height="30px"/>
@@ -57,12 +62,10 @@ const Cart = props => {
                       
                     ))
                 }
-                {/* {count > 0 &&
-                cart.map(([sku, quantity]) => (
-                    <CartItem key={sku.id} sku={sku} quantity={quantity} />
-                ))}
-                {count === 0 && <span>No items in cart.</span>}
-                {count > 0 && <Checkout />} */}
+               <hr/>
+                <div>
+            <p><strong>SubTotal <span class="pull-right">{formattedCurrency.format(cartTotal)}</span></strong></p>
+                </div>
             </div>
         </>
         
