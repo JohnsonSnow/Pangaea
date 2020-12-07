@@ -33,7 +33,9 @@ const Cart = props => {
                 maxWidth: 400,
                 width: "100%",
                 zIndex: 1,
+                overflow: "auto",
                 }}
+                id="style-10"
             >
                 <div style={{ display: "flex", justifyContent: "space-between" }}>
                 <i class="fa fa-arrow-circle-left" onClick={() => props.setMode(false)}></i>
@@ -42,16 +44,16 @@ const Cart = props => {
                 </div>
                 {
                     items.map((item) =>(
-                        <div class="row" style={{ backgroundColor: "white", marginBottom: "10px", padding: "10px "}}>
+                        <div class="row" style={{ backgroundColor: "white", marginBottom: "10px", padding: "10px"}}>
                           <div class="col-md-12">
                           <p class="pull-left">{item.title}</p><i class="fa fa-close pull-right" onClick={() => removeItem(item.id)}></i>
                           </div>
-                            <div class="col-md-4">
+                            <div class="col-md-5">
                                 <button class="btn btn-primary" onClick={() => updateItemQuantity(item.id, item.quantity - 1)} > - </button>
-                                { item.quantity }
+                               <button class="btn btn-default"> { item.quantity }</button>
                                 <button class="btn btn-primary" onClick={() => updateItemQuantity(item.id, item.quantity + 1)} > + </button>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 {formattedCurrency.format(item.price * item.quantity)}
                             </div>
                             <div class="col-md-4">
